@@ -3,121 +3,97 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ayah | Emerald Edition</title>
+    <title>Ayah | Royal Edition</title>
     <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
     
     <style>
         :root {
-            --bg: #05070a;
-            --sidebar-bg: #0a0f1a;
-            --card-bg: #0f172a;
-            --gold: #fbbf24; 
-            --emerald: #10b981;   
-            --text: #f8fafc;
-            --sub-text: #94a3b8;
+            --bg: #0f1014;
+            --sidebar-bg: #1a1c23;
+            --card-bg: #242731;
+            --accent: #eab308; /* Rose Gold / Deep Yellow */
+            --primary: #ec4899; /* Subtle Rose accent */
+            --text: #ffffff;
+            --sub-text: #a1a1aa;
         }
 
         body {
             background: var(--bg); color: var(--text);
             font-family: 'Quicksand', sans-serif; margin: 0; 
-            display: flex; /* Sidebar layout */
+            display: flex;
         }
 
         /* --- SIDEBAR --- */
         .sidebar {
-            width: 240px;
-            height: 100vh;
-            background: var(--sidebar-bg);
-            border-right: 1px solid rgba(16, 185, 129, 0.2);
-            position: fixed;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding-top: 40px;
-            z-index: 100;
+            width: 260px; height: 100vh; background: var(--sidebar-bg);
+            border-right: 1px solid rgba(234, 179, 8, 0.1);
+            position: fixed; display: flex; flex-direction: column;
+            align-items: center; padding-top: 40px; z-index: 100;
         }
 
-        .sidebar-logo {
-            color: var(--gold);
-            margin-bottom: 10px;
-            filter: drop-shadow(0 0 8px rgba(251, 191, 36, 0.4));
-        }
-
-        .sidebar-brand {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--text);
-            letter-spacing: 2px;
-            margin-bottom: 40px;
-        }
+        .sidebar-logo { color: var(--accent); margin-bottom: 10px; filter: drop-shadow(0 0 10px rgba(234, 179, 8, 0.3)); }
+        .sidebar-brand { font-size: 2rem; font-weight: 700; color: var(--text); letter-spacing: 3px; margin-bottom: 40px; }
 
         .sidebar-info {
-            padding: 20px;
-            font-size: 0.85rem;
-            color: var(--sub-text);
-            line-height: 1.6;
-            text-align: center;
-            border-top: 1px solid rgba(255,255,255,0.05);
+            padding: 20px; font-size: 0.85rem; color: var(--sub-text);
+            line-height: 1.6; text-align: center; border-top: 1px solid rgba(255,255,255,0.05);
             margin-top: 20px;
         }
 
         /* --- MAIN CONTENT --- */
-        .main-wrapper {
-            margin-left: 240px; /* Space for sidebar */
-            flex: 1;
-            padding: 40px 20px;
-            background-image: radial-gradient(circle at 2px 2px, rgba(16, 185, 129, 0.05) 1px, transparent 0);
-            background-size: 30px 30px;
-        }
-
-        .container { max-width: 800px; margin: 0 auto; }
+        .main-wrapper { margin-left: 260px; flex: 1; padding: 40px 20px; min-height: 100vh; }
+        .container { max-width: 850px; margin: 0 auto; }
 
         header {
-            text-align: center; padding: 40px 20px; background: rgba(15, 23, 42, 0.6);
-            border-radius: 30px; border: 1px solid rgba(16, 185, 129, 0.2);
-            margin-bottom: 30px; backdrop-filter: blur(12px);
+            text-align: center; padding: 50px 20px; background: var(--card-bg);
+            border-radius: 30px; border: 1px solid rgba(234, 179, 8, 0.1);
+            margin-bottom: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.3);
         }
 
-        .gold-text { color: var(--gold); }
+        .accent-text { color: var(--accent); }
 
-        .nav-bar { display: flex; gap: 10px; margin-bottom: 30px; justify-content: center; flex-wrap: wrap; }
-        input {
-            background: var(--card-bg); border: 1px solid rgba(16, 185, 129, 0.3);
-            color: #fff; padding: 12px; border-radius: 12px; width: 60px; text-align: center;
+        /* --- NAVIGATION --- */
+        .nav-bar { display: flex; gap: 12px; margin-bottom: 30px; justify-content: center; flex-wrap: wrap; }
+        
+        /* Surah Dropdown Styling */
+        select {
+            background: var(--card-bg); border: 1px solid var(--accent);
+            color: #fff; padding: 12px; border-radius: 12px; cursor: pointer;
+            font-family: 'Quicksand'; font-weight: 600; outline: none;
         }
 
         .btn-action {
-            background: var(--emerald); color: #05070a; border: none;
-            padding: 12px 20px; border-radius: 12px; cursor: pointer;
+            background: var(--accent); color: #000; border: none;
+            padding: 12px 24px; border-radius: 12px; cursor: pointer;
             font-weight: 700; display: flex; align-items: center; gap: 8px; transition: 0.3s;
         }
-        .btn-gold { background: var(--gold); }
-        .btn-outline { background: transparent; border: 1px solid var(--emerald); color: var(--emerald); }
-        .btn-action:hover { transform: translateY(-2px); }
+        .btn-outline { background: transparent; border: 1px solid var(--accent); color: var(--accent); }
+        .btn-action:hover { transform: scale(1.05); filter: brightness(1.2); }
 
         /* --- CARDS --- */
         .ayah-card {
-            background: var(--card-bg); border-radius: 20px; padding: 25px;
-            margin-bottom: 20px; border: 1px solid rgba(255,255,255,0.05);
+            background: var(--card-bg); border-radius: 24px; padding: 35px;
+            margin-bottom: 25px; border-left: 5px solid var(--accent);
+            transition: 0.3s;
         }
 
         .arabic {
-            font-family: 'Amiri', serif; font-size: 2rem; text-align: right;
-            color: #fff; line-height: 2.2; margin-bottom: 15px; direction: rtl;
+            font-family: 'Amiri', serif; font-size: 2.2rem; text-align: right;
+            color: #fff; line-height: 2.5; margin-bottom: 20px; direction: rtl;
         }
 
-        .translation { font-size: 1rem; color: var(--sub-text); line-height: 1.5; margin-bottom: 20px; }
+        .translation { font-size: 1.1rem; color: var(--sub-text); line-height: 1.7; margin-bottom: 25px; font-weight: 400; }
 
         .tafseer-panel {
-            background: rgba(16, 185, 129, 0.08); border-radius: 12px; padding: 15px;
-            font-size: 0.9rem; color: #d1fae5; border-left: 3px solid var(--emerald);
-            display: none; margin-top: 15px;
+            background: rgba(234, 179, 8, 0.05); border-radius: 12px; padding: 20px;
+            font-size: 0.95rem; color: #fff; border: 1px dashed var(--accent);
+            display: none; margin-top: 20px;
         }
 
-        .card-footer { display: flex; justify-content: space-between; align-items: center; padding-top: 15px; border-top: 1px solid rgba(255,255,255,0.05); }
-        .ayah-info { font-size: 0.7rem; color: var(--gold); font-weight: 700; }
-        .audio-mini { background: none; border: none; color: var(--emerald); cursor: pointer; display: flex; align-items: center; gap: 5px; font-size: 0.8rem; }
+        .card-footer { display: flex; justify-content: space-between; align-items: center; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.05); }
+        .ayah-info { font-size: 0.75rem; color: var(--accent); font-weight: 700; text-transform: uppercase; }
+        .audio-mini { background: none; border: none; color: var(--accent); cursor: pointer; display: flex; align-items: center; gap: 6px; font-weight: 600; }
 
         @media (max-width: 768px) {
             .sidebar { display: none; }
@@ -128,32 +104,34 @@
 <body>
 
 <div class="sidebar">
-    <div class="sidebar-logo"><i data-lucide="book-marked" size="48"></i></div>
+    <div class="sidebar-logo"><i data-lucide="book-marked" size="52"></i></div>
     <div class="sidebar-brand">Ayah</div>
     
     <div class="sidebar-info">
-        <strong style="color: var(--emerald);">The Divine Shield</strong><br>
-        The Qur'an is a healing for the hearts and a light for the soul.
+        <strong style="color: var(--accent);">Significance of the Qur'an</strong><br>
+        A guide for all humanity, a light in the darkness, and a mercy to those who believe.
     </div>
     
     <div class="sidebar-info" style="border:none; font-style: italic;">
-        "This is the Book about which there is no doubt, a guidance for those conscious of Allah."
+        "Verily, in the remembrance of Allah do hearts find rest."
     </div>
 </div>
 
 <div class="main-wrapper">
     <div class="container">
         <header>
-            <div style="margin-bottom: 10px;"><i data-lucide="sparkles" color="#fbbf24" size="32"></i></div>
-            <h1>The Radiant <span class="gold-text">Quran</span></h1>
-            <p id="statusMsg">Explore the Divine Wisdom</p>
+            <div style="margin-bottom: 15px;"><i data-lucide="crown" color="#eab308" size="40"></i></div>
+            <h1>The Eternal <span class="accent-text">Messages</span></h1>
+            <p id="statusMsg" style="color: var(--sub-text);">Select a Surah to begin your journey</p>
         </header>
 
         <div class="nav-bar">
-            <input type="number" id="surahNum" value="1" min="1" max="114">
+            <select id="surahSelect">
+                <option value="" disabled selected>Select Surah...</option>
+            </select>
+            
             <button class="btn-action" onclick="loadSurah()"><i data-lucide="book-open"></i> Read</button>
-            <button class="btn-action btn-gold" onclick="saveBookmark()"><i data-lucide="bookmark"></i></button>
-            <button class="btn-action btn-outline" onclick="loadRandom()"><i data-lucide="zap"></i> Inspire Me</button>
+            <button class="btn-action btn-outline" onclick="loadRandom()"><i data-lucide="sparkles"></i> Random Ayah</button>
         </div>
 
         <div id="mainContent"></div>
@@ -163,24 +141,36 @@
 <script>
     lucide.createIcons();
 
-    window.onload = () => {
-        const last = localStorage.getItem('quran_bookmark');
-        if(last) {
-            document.getElementById('surahNum').value = last;
-            loadSurah();
-        }
-    };
+    const surahSelect = document.getElementById('surahSelect');
 
-    function saveBookmark() {
-        const s = document.getElementById('surahNum').value;
-        localStorage.setItem('quran_bookmark', s);
-        document.getElementById('statusMsg').innerText = `Saved Surah ${s} ✨`;
+    // Populate Surah List on Load
+    async function init() {
+        try {
+            const res = await fetch('https://api.alquran.cloud/v1/surah');
+            const data = await res.json();
+            data.data.forEach(s => {
+                const opt = document.createElement('option');
+                opt.value = s.number;
+                opt.textContent = `${s.number}. ${s.englishName}`;
+                surahSelect.appendChild(opt);
+            });
+
+            const last = localStorage.getItem('quran_bookmark');
+            if(last) {
+                surahSelect.value = last;
+                loadSurah();
+            }
+        } catch (e) { console.error("Could not load Surah list"); }
     }
+    init();
 
     async function loadSurah() {
-        const s = document.getElementById('surahNum').value;
+        const s = surahSelect.value;
+        if(!s) return;
+        
+        localStorage.setItem('quran_bookmark', s);
         const main = document.getElementById('mainContent');
-        main.innerHTML = '<p style="text-align:center; color:var(--emerald)">Opening the Book...</p>';
+        main.innerHTML = '<p style="text-align:center; color:var(--accent)">Unveiling the verses...</p>';
 
         try {
             const [ar, en] = await Promise.all([
@@ -192,9 +182,8 @@
 
             main.innerHTML = '';
             arD.data.ayahs.forEach((ayah, i) => {
-                // To keep it simple and fast, we provide a placeholder meaning context
-                const meaningContext = `This verse belongs to Surah ${arD.data.englishName}. It was revealed in ${arD.data.revelationType} to guide mankind towards righteousness.`;
-                main.innerHTML += renderAyah(ayah, enD.data.ayahs[i], i, false, meaningContext);
+                const context = `This Ayah is part of ${arD.data.englishName} (${arD.data.englishNameTranslation}). Revealed in ${arD.data.revelationType}, it carries the profound weight of divine guidance.`;
+                main.innerHTML += renderAyah(ayah, enD.data.ayahs[i], i, false, context);
             });
             lucide.createIcons();
         } catch(e) { main.innerHTML = "Error loading. Check connection."; }
@@ -203,14 +192,15 @@
     async function loadRandom() {
         const main = document.getElementById('mainContent');
         const randomId = Math.floor(Math.random() * 6236) + 1;
+        main.innerHTML = '<p style="text-align:center; color:var(--accent)">Seeking inspiration...</p>';
         try {
             const res = await fetch(`https://api.alquran.cloud/v1/ayah/${randomId}/en.sahih`);
             const data = await res.json();
             const arRes = await fetch(`https://api.alquran.cloud/v1/ayah/${randomId}`);
             const arData = await arRes.json();
 
-            main.innerHTML = `<div style="text-align:center; margin-bottom: 20px; color:var(--gold)">-- Divine Reflection --</div>
-                              ${renderAyah(arData.data, data.data, 999, true, "Reflect on this verse's purpose in your life today.")}`;
+            main.innerHTML = `<div style="text-align:center; margin-bottom: 25px; color:var(--accent); font-weight:bold;">-- LIGHT FROM THE UNSEEN --</div>
+                              ${renderAyah(arData.data, data.data, 999, true, "Reflect upon this message and its purpose in your heart today.")}`;
             lucide.createIcons();
         } catch(e) { console.error(e); }
     }
@@ -223,11 +213,11 @@
                 <div class="card-footer">
                     <span class="ayah-info">${isRandom ? ar.surah.englishName : ''} Ayah ${ar.numberInSurah}</span>
                     <div style="display:flex; gap:15px;">
-                        <button class="audio-mini" onclick="playA(${ar.number})"><i data-lucide="play-circle" size="16"></i> Listen</button>
-                        <button class="audio-mini" onclick="toggleT(${i})"><i data-lucide="info" size="16"></i> Meaning</button>
+                        <button class="audio-mini" onclick="playA(${ar.number})"><i data-lucide="play-circle" size="18"></i> Listen</button>
+                        <button class="audio-mini" onclick="toggleT(${i})"><i data-lucide="help-circle" size="18"></i> Purpose</button>
                     </div>
                 </div>
-                <div id="taf-${i}" class="tafseer-panel"><strong>Purpose & Context:</strong><br>${purpose}</div>
+                <div id="taf-${i}" class="tafseer-panel"><strong>Meaning & Context:</strong><br>${purpose}</div>
             </div>
         `;
     }
